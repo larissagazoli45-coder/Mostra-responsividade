@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura Dinâmica - Meus Resumos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <h2>Leitura Dinâmica</h2>
+        </div>
+        <nav>
+            <a href="painel.html"><i class="fa-solid fa-bullseye"></i> Minhas Metas</a>
+            <a href="#" class="ativo"><i class="fa-solid fa-file-pen"></i> Resumos</a>
+            <a href="selos.html"><i class="fa-solid fa-medal"></i> Meus Selos</a>
+        </nav>
+        <div class="user-info">
+            <i class="fa-solid fa-circle-user"></i>
+            <span id="nome-usuario">Carregando...</span>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Meus Resumos Literários</h1>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-novo" onclick="abrirModalResumo()">+ Novo Resumo</button>
+                <button class="btn-novo" style="background-color: #EF4444;" onclick="sairDoSistema()">Sair</button>
+            </div>
+        </header>
+
+        <section id="grid-resumos" class="grid-cards">
+            <p>Carregando seus resumos...</p>
+        </section>
+    </main>
+
+    <div id="modal-resumo" class="modal">
+        <div class="modal-content">
+            <span class="fechar" onclick="fecharModalResumo()">&times;</span>
+            <h2>Escrever Novo Resumo</h2>
+            
+            <div class="form-grupo">
+                <label>Título da Obra / Capítulo:</label>
+                <input type="text" id="resumo-titulo" placeholder="Ex: Dom Casmurro - Capítulo 1">
+            </div>
+            
+            <div class="form-grupo">
+                <label>Conteúdo do Resumo:</label>
+                <textarea id="resumo-conteudo" rows="8" placeholder="Digite aqui as suas anotações sobre a leitura..." style="width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <button class="btn-salvar" onclick="salvarResumo()">Salvar Resumo no Banco</button>
+        </div>
+    </div>
+
+    <script src="resumos.js"></script>
+    <script>
+        function sairDoSistema() {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

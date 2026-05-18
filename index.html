@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Leitura Dinâmica na Escola</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f3f4f6; color: #333; display: flex; }
+        .apresentacao { width: 60%; padding: 50px; }
+        .login-box { width: 40%; background: white; padding: 50px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); height: 100vh; }
+        h1 { color: #4F46E5; }
+        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #4F46E5; color: white; cursor: pointer; border: none; font-weight: bold; }
+        button:hover { background: #4338CA; }
+        .aviso { color: red; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+
+    <div class="apresentacao">
+        <h1>Bem-vindo ao site Leitura Dinâmica na Escola!</h1>
+        
+        <p>Esse site tem como objetivo servir de incentivador para os alunos, após surgir uma demanda que eles tiveram quando se trata da motivação para ler.</p>
+        <p>Sabemos que com um mundo tão tecnológico como o nosso, a leitura pode parecer tediosa
+        perto das mídias sociais, mas isso não é verdade! Já foi provado que a leitura tem diversos benefícios, inclusive melhorar a concentração. 
+        Então como algo que prende a atenção seria sem graça, não é mesmo? </p>
+        
+       <p>Entenda um pouco mais lendo sobre o nosso trabalho abaixo:</p>
+
+              
+       
+       
+      <p>O projeto, desenvolvido por alunos da Escola Elisa Tramontina em Carlos Barbosa/RS, investiga como transformar o hábito da leitura em algo prazeroso e dinâmico, 
+        combatendo a percepção de que ler é apenas uma obrigação escolar
+      </p> 
+
+<p>Atualmente, a leitura enfrenta a forte concorrência do entretenimento rápido das telas e redes sociais. Entre 2019 e 2024, o Brasil perdeu cerca de 6,7 milhões de
+leitores, enquanto o número de assinantes de streamings cresceu significativamente. Além disso, o aumento no preço dos livros físicos é um fator que
+ desestimula os jovens
+</p> 
+
+<P>Uma enquete realizada com 30 alunos do 2º ano do Ensino Médio revelou dados cruciais sobre a relação dos jovens com os livros: apenas 33,3% afirmam ter o
+    hábito de ler, embora 60% digam que gostam de ler. Além disso, 90% dos alunos acreditam que a criação de uma plataforma web seria viável para incentivar a leitura, 
+    e o mesmo percentual defende que as escolas devem reforçar a leitura de forma dinâmica. O maior fator de incentivo identificado foi a criação de sistemas 
+    de recompensas, citado por 70% dos alunos.
+
+</P> 
+
+<p>Para reverter o cenário de declínio do interesse literário, o projeto propõe a criação de um protótipo e site dinâmico para monitoramento de leitura,
+    a implementação de competições saudáveis e sistemas de recompensas, e o desenvolvimento de cartilhas informativas para professores focadas em metodologias divertidas.
+
+</p> 
+
+<p>O estudo reafirma que a leitura regular funciona como um exercício para o cérebro, melhorando a saúde mental, reduzindo o estresse e a ansiedade,
+    além de expandir o vocabulário e a capacidade de concentração.
+</p> 
+
+       
+    </div>
+
+    <div class="login-box">
+        <h2>Entrar no Sistema</h2>
+        <input type="text" id="usu" placeholder="Seu nome de usuário">
+        <input type="password" id="senha" placeholder="Sua senha">
+        
+        <p id="mensagem" class="aviso"></p>
+
+        <button onclick="fazerLogin()">Fazer Login</button>
+        <button onclick="fazerCadastro()" style="background: #10B981;">Cadastrar Novo Usuário</button>
+    </div>
+
+    <script>
+        const URL_API = "http://localhost:3000/api";
+
+        async function fazerLogin() {
+            const usuario = document.getElementById('usu').value;
+            const senha = document.getElementById('senha').value;
+            
+            const resposta = await fetch(`${URL_API}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario: usuario, senha: senha })
+            });
+
+            const dados = await resposta.json();
+
+            if (dados.sucesso) {
+                // A MÁGICA ACONTECE AQUI: Guardamos o nome do usuário no navegador (Local Storage)
+                localStorage.setItem("usuarioLogado", dados.usuario);
+                // Redireciona para o painel (Opcoes.java)
+                window.location.href = "painel.html"; 
+            } else {
+                document.getElementById('mensagem').innerText = dados.erro;
+            }
+        }
+
+        async function fazerCadastro() {
+            const usuario = document.getElementById('usu').value;
+            const senha = document.getElementById('senha').value;
+            
+            const resposta = await fetch(`${URL_API}/cadastro`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ usuario: usuario, senha: senha })
+            });
+
+            const dados = await resposta.json();
+            if(resposta.ok) {
+                alert("Cadastro feito! Agora clique em Fazer Login.");
+            } else {
+                document.getElementById('mensagem').innerText = dados.erro;
+            }
+        }
+    </script>
+</body>
+</html>

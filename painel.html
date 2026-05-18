@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura Dinâmica - Painel de Metas</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <h2>Leitura Dinâmica</h2>
+        </div>
+        <nav>
+            <a href="#" class="ativo"><i class="fa-solid fa-bullseye"></i> Minhas Metas</a>
+           <a href="resumos.html"><i class="fa-solid fa-file-pen"></i> Resumos</a>
+            <a href="selos.html"><i class="fa-solid fa-medal"></i> Meus Selos</a>
+        </nav>
+        <div class="user-info">
+            <i class="fa-solid fa-circle-user"></i>
+            <span id="nome-usuario">Carregando...</span>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Painel de Metas</h1>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-novo" onclick="abrirModalNovaMeta()">+ Nova Meta</button>
+                <button class="btn-novo" style="background-color: #EF4444;" onclick="sairDoSistema()">Sair</button>
+            </div>
+        </header>
+
+        <section id="grid-metas" class="grid-cards">
+            <p>Carregando suas metas de leitura...</p>
+        </section>
+    </main>
+
+    <div id="modal-meta" class="modal">
+        <div class="modal-content">
+            <span class="fechar" onclick="fecharModal()">&times;</span>
+            <h2>Cadastrar Nova Meta</h2>
+            
+            <div class="form-grupo">
+                <label>Nome da Meta:</label>
+                <input type="text" id="nova-nome" placeholder="Ex: Maratona Literária de Inverno">
+            </div>
+            
+            <div style="display: flex; gap: 10px;">
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Nome da Obra:</label>
+                    <input type="text" id="nova-obra">
+                </div>
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Nome do Autor:</label>
+                    <input type="text" id="novo-autor">
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Quando Começou:</label>
+                    <input type="date" id="nova-data-inicio">
+                </div>
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Quando Terminou:</label>
+                    <input type="date" id="nova-data-fim">
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Medida:</label>
+                    <select id="nova-medida">
+                        <option value="1">Livros</option>
+                        <option value="2">Capítulos</option>
+                        <option value="3">Páginas</option>
+                        <option value="4">Palavras</option>
+                    </select>
+                </div>
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Quantidade:</label>
+                    <input type="number" id="nova-quant" value="1">
+                </div>
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Gênero Literário:</label>
+                    <select id="novo-genero">
+                        <option value="1">Fantasia</option>
+                        <option value="2">Ficção científica</option>
+                        <option value="3">Romance</option>
+                        <option value="4">Mistério</option>
+                        <option value="5">Terror</option>
+                        <option value="6">Desenvolvimento pessoal</option>
+                        <option value="7">Hq</option>
+                        <option value="8">Clássico</option>
+                        <option value="9">Tecnologia</option>
+                        <option value="10">Aventura</option>
+                        <option value="11">Poesia</option>
+                        <option value="12">Infanto-juvenil</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Período de Tempo:</label>
+                    <select id="novo-periodo">
+                        <option value="1">Dia</option>
+                        <option value="2">Semana</option>
+                        <option value="3">Quinzena</option>
+                        <option value="4">Mês</option>
+                        <option value="5">Semestre</option>
+                        <option value="6">Ano</option>
+                    </select>
+                </div>
+                <div class="form-grupo" style="flex: 1;">
+                    <label>Status de Conclusão:</label>
+                    <select id="novo-status">
+                        <option value="3">Não iniciada</option>
+                        <option value="2">Em andamento</option>
+                        <option value="1">Concluída</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-salvar" onclick="salvarMeta()">Salvar Meta no Sistema</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function sairDoSistema() {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

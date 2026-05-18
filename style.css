@@ -1,0 +1,211 @@
+/* Variáveis de Cores (Fácil de mudar depois) */
+:root {
+    --primaria: #4F46E5;
+    --primaria-hover: #4338CA;
+    --secundaria: #10B981;
+    --fundo: #F3F4F6;
+    --texto-escuro: #1F2937;
+    --texto-claro: #6B7280;
+    --branco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--fundo);
+    color: var(--texto-escuro);
+}
+
+/* --- SIDEBAR (Menu Lateral) --- */
+.sidebar {
+    width: 250px;
+    background-color: var(--branco);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primaria);
+    margin-bottom: 40px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.sidebar nav a {
+    text-decoration: none;
+    color: var(--texto-claro);
+    padding: 12px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.sidebar nav a:hover, .sidebar nav a.ativo {
+    background-color: var(--primaria);
+    color: var(--branco);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #E5E7EB;
+}
+
+/* --- CONTEÚDO PRINCIPAL --- */
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.btn-novo {
+    background-color: var(--primaria);
+    color: var(--branco);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-novo:hover {
+    background-color: var(--primaria-hover);
+}
+
+/* --- GRID DE METAS --- */
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card-meta {
+    background-color: var(--branco);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primaria);
+}
+
+.card-meta h3 {
+    margin-bottom: 10px;
+    color: var(--primaria);
+}
+
+.card-meta p {
+    font-size: 0.9rem;
+    color: var(--texto-claro);
+    margin-bottom: 5px;
+}
+
+.status-concluido {
+    color: var(--secundaria);
+    font-weight: bold;
+}
+
+/* --- RESPONSIVIDADE (Para Celulares) --- */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .sidebar nav {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .sidebar nav a {
+        font-size: 0.8rem;
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* --- ESTILO DA JANELA MODAL --- */
+.modal {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.6);
+    align-items: center; justify-content: center;
+}
+.modal-content {
+    background-color: var(--branco); padding: 30px; border-radius: 12px;
+    width: 90%; max-width: 550px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.modal-content h2 { color: var(--primaria); margin-bottom: 20px; }
+.fechar { float: right; font-size: 28px; font-weight: bold; cursor: pointer; color: #9CA3AF; }
+.fechar:hover { color: #1F2937; }
+.form-grupo { margin-bottom: 15px; }
+.form-grupo label { display: block; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
+.form-grupo input, .form-grupo select {
+    width: 100%; padding: 10px; border: 1px solid #D1D5DB; border-radius: 6px; font-size: 1rem;
+}
+.btn-salvar {
+    background-color: var(--secundaria); color: white; border: none;
+    padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 10px;
+}
+.btn-salvar:hover { background-color: #059669; }
+
+/* --- BOTÕES DE AÇÃO DOS CARD DE METAS --- */
+.btn-card-editar, .btn-card-deletar {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.btn-card-editar {
+    background-color: #E0E7FF;
+    color: #4F46E5;
+}
+.btn-card-editar:hover {
+    background-color: #4F46E5;
+    color: white;
+}
+
+.btn-card-deletar {
+    background-color: #FEE2E2;
+    color: #EF4444;
+}
+.btn-card-deletar:hover {
+    background-color: #EF4444;
+    color: white;
+}

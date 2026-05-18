@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitura Dinâmica - Meus Selos</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilo customizado para os cards de selos bloqueados */
+        .card-selo-bloqueado {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            border-left: 5px solid #9CA3AF !important;
+        }
+        .icon-container {
+            font-size: 3rem;
+            color: var(--primaria);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .status-bloqueado {
+            color: #EF4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <i class="fa-solid fa-book-open"></i>
+            <h2>Leitura Dinâmica</h2>
+        </div>
+        <nav>
+            <a href="painel.html"><i class="fa-solid fa-bullseye"></i> Minhas Metas</a>
+            <a href="resumos.html"><i class="fa-solid fa-file-pen"></i> Resumos</a>
+           <a href="selos.html"><i class="fa-solid fa-medal"></i> Meus Selos</a>
+        </nav>
+        <div class="user-info">
+            <i class="fa-solid fa-circle-user"></i>
+            <span id="nome-usuario">Carregando...</span>
+        </div>
+    </aside>
+
+    <main class="content">
+        <header>
+            <h1>Galeria de Medalhas e Selos</h1>
+            <button class="btn-novo" style="background-color: #EF4444;" onclick="sairDoSistema()">Sair</button>
+        </header>
+
+        <section id="grid-selos" class="grid-cards">
+            <p>Calculando suas conquistas literárias...</p>
+        </section>
+    </main>
+
+    <script src="selos.js"></script>
+    <script>
+        function sairDoSistema() {
+            localStorage.removeItem("usuarioLogado");
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>
